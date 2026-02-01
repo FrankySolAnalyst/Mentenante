@@ -1,22 +1,30 @@
 "use client"
 
 import Link from "next/link"
-import { Phone, Wrench, Languages } from "lucide-react"
+import Image from "next/image"
+import { Phone, Languages } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
+import { GoogleReviewsBadge } from "@/components/google-reviews-badge"
 
 export function Header() {
   const { language, setLanguage, t } = useLanguage()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex items-center space-x-2 engraving-border px-3 py-1.5 rounded">
-            <Wrench className="h-6 w-6" />
-            <span className="vintage-heading text-lg">Tech Intervention</span>
+        <Link href="/" className="flex items-center space-x-3">
+          <div className="relative h-12 w-12 flex-shrink-0">
+            <Image
+              src="/logo-transparent.png"
+              alt="Tech Intervention Logo"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
+          <span className="vintage-heading text-lg hidden sm:inline">Tech Intervention</span>
         </Link>
 
         {/* Navigation */}
@@ -35,8 +43,13 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* Emergency CTA + Language Switcher */}
-        <div className="flex items-center space-x-2">
+        {/* Emergency CTA + Reviews + Language Switcher */}
+        <div className="flex items-center gap-2">
+          {/* Google Reviews Badge */}
+          <div className="hidden lg:block">
+            <GoogleReviewsBadge />
+          </div>
+          
           {/* Language Switcher */}
           <button
             onClick={() => setLanguage(language === 'ro' ? 'en' : 'ro')}
@@ -47,11 +60,11 @@ export function Header() {
             <span className="uppercase">{language === 'ro' ? 'EN' : 'RO'}</span>
           </button>
 
-          <a href="tel:+40123456789" className="hidden sm:flex items-center space-x-2 text-sm font-medium">
+          <a href="tel:+40123456789" className="hidden sm:flex items-center space-x-2 text-sm font-medium hover:text-siren transition-colors">
             <Phone className="h-4 w-4" />
-            <span>0123 456 789</span>
+            <span className="font-semibold">0123 456 789</span>
           </a>
-          <Button variant="siren" size="sm">
+          <Button variant="siren" size="sm" className="hidden md:flex">
             {t.header.emergencyRepair}
           </Button>
         </div>

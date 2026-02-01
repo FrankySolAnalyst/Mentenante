@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/package-lock.json
 
 # testing
 /coverage
@@ -14,6 +15,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -23,10 +25,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# local env files
-.env*.local
+# local env files (keep .env.local.example)
 .env
+.env*.local
 
 # vercel
 .vercel
@@ -37,3 +40,14 @@ next-env.d.ts
 
 # temporary files
 tmp_rovodev_*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

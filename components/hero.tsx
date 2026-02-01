@@ -1,8 +1,10 @@
 "use client"
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Phone, ArrowRight, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { UrgencyIndicator } from "@/components/urgency-indicator"
 
 export function Hero() {
   const { t } = useLanguage()
@@ -15,10 +17,13 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Copy */}
           <div className="space-y-8 text-center lg:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
-              <Zap className="h-4 w-4 text-siren" />
-              <span>{t.hero.badge}</span>
+            {/* Badge + Urgency Indicator */}
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
+                <Zap className="h-4 w-4 text-siren" />
+                <span>{t.hero.badge}</span>
+              </div>
+              <UrgencyIndicator />
             </div>
 
             {/* Main Headline */}
@@ -85,49 +90,27 @@ export function Hero() {
 
           {/* Right Column - Hero Image */}
           <div className="relative">
-            {/* Main Image Container */}
-            <div className="relative aspect-square max-w-md mx-auto engraving-border rounded-lg overflow-hidden bg-white p-8">
-              {/* Placeholder for Tech Trinity Image */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                {/* Tech Trinity Illustration Placeholder */}
-                <div className="text-center space-y-4 p-8">
-                  <div className="flex justify-center items-end space-x-8">
-                    {/* Left Figure - The Communicator */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-20 h-24 bg-black rounded-t-full mb-2 relative">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 border-4 border-siren rounded-full" />
-                        <Phone className="absolute bottom-2 left-1/2 -translate-x-1/2 h-8 w-8 text-white" />
-                      </div>
-                      <div className="text-xs font-bold uppercase">{t.hero.supportLabel}</div>
-                    </div>
-
-                    {/* Center Figure - The Expert */}
-                    <div className="flex flex-col items-center -mt-4">
-                      <div className="w-24 h-32 bg-black rounded-t-full mb-2 relative">
-                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 border-4 border-siren rounded-full" />
-                        {/* Wings */}
-                        <div className="absolute -left-6 top-8 w-6 h-12 border-4 border-black rotate-12" />
-                        <div className="absolute -right-6 top-8 w-6 h-12 border-4 border-black -rotate-12" />
-                        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-white">⚡</span>
-                      </div>
-                      <div className="text-sm font-bold uppercase">{t.hero.expertLabel}</div>
-                    </div>
-
-                    {/* Right Figure - The Customer */}
-                    <div className="flex flex-col items-center">
-                      <div className="w-20 h-24 bg-black rounded-t-full mb-2 relative">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 border-4 border-siren rounded-full" />
-                        <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-3xl">😱</span>
-                      </div>
-                      <div className="text-xs font-bold uppercase">{t.hero.panicLabel}</div>
-                    </div>
-                  </div>
-                  
-                  <p className="text-xs text-gray-600 mt-8 vintage-subheading">
-                    {t.hero.techTrinity}
-                  </p>
-                </div>
+            {/* Main Image Container - Clean presentation */}
+            <div className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-black bg-white p-6">
+              {/* Tech Trinity Logo */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src="/logo-transparent.png"
+                  alt="Tech Intervention - Tech Trinity Logo"
+                  width={400}
+                  height={400}
+                  className="object-contain w-full h-full"
+                  priority
+                  quality={100}
+                />
               </div>
+            </div>
+            
+            {/* Caption below image */}
+            <div className="mt-6 text-center">
+              <p className="text-base font-bold text-gray-900 vintage-heading px-4">
+                {t.hero.techTrinity}
+              </p>
             </div>
 
             {/* Floating Stats */}

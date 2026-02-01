@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Optimized SVG placeholder - to be replaced with actual traced logo -->
+  <!-- This is a temporary placeholder until we can vectorize the actual logo -->
+  <defs>
+    <style>
+      .tech-text { font-family: Georgia, serif; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="512" cy="512" r="480" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
+  
+  <!-- Siren halo effect -->
+  <circle cx="512" cy="280" r="100" fill="none" stroke="#FF4444" stroke-width="8" opacity="0.3"/>
+  <circle cx="512" cy="280" r="120" fill="none" stroke="#FF4444" stroke-width="6" opacity="0.2"/>
+  <circle cx="512" cy="280" r="140" fill="none" stroke="#FF4444" stroke-width="4" opacity="0.1"/>
+  
+  <!-- Left Figure - The Communicator -->
+  <g id="left-figure" transform="translate(300, 450)">
+    <ellipse cx="0" cy="0" rx="60" ry="80" fill="#000000"/>
+    <circle cx="0" cy="-60" r="40" fill="none" stroke="#FF4444" stroke-width="4"/>
+    <path d="M -15,-10 L -20,-5 L -15,0" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Center Figure - The Expert (with wings) -->
+  <g id="center-figure" transform="translate(512, 450)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="70" ry="100" fill="#000000"/>
+    <!-- Head with halo -->
+    <circle cx="0" cy="-80" r="50" fill="none" stroke="#FF4444" stroke-width="5"/>
+    <!-- Wings -->
+    <path d="M -80,-20 Q -120,-10 -100,20" stroke="#000000" stroke-width="6" fill="none"/>
+    <path d="M 80,-20 Q 120,-10 100,20" stroke="#000000" stroke-width="6" fill="none"/>
+    <!-- Lightning bolt -->
+    <path d="M -10,-30 L 0,-10 L -5,0 L 5,0 L 0,10 L 10,-10 L 5,-20 Z" fill="#FF4444"/>
+  </g>
+  
+  <!-- Right Figure - The Customer (in panic) -->
+  <g id="right-figure" transform="translate(724, 450)">
+    <ellipse cx="0" cy="0" rx="60" ry="80" fill="#000000"/>
+    <circle cx="0" cy="-60" r="40" fill="none" stroke="#FF4444" stroke-width="4"/>
+    <!-- Panic expression -->
+    <text x="-15" y="-5" font-size="40" fill="#FFFFFF">😱</text>
+  </g>
+  
+  <!-- Support labels -->
+  <text x="300" y="580" text-anchor="middle" class="tech-text" font-size="24" fill="#000000">SUPPORT</text>
+  <text x="512" y="600" text-anchor="middle" class="tech-text" font-size="28" fill="#000000">EXPERT</text>
+  <text x="724" y="580" text-anchor="middle" class="tech-text" font-size="24" fill="#000000">PANIC</text>
+  
+  <!-- Brand text -->
+  <text x="512" y="720" text-anchor="middle" class="tech-text" font-size="48" fill="#000000">TECH</text>
+  <text x="512" y="780" text-anchor="middle" class="tech-text" font-size="48" fill="#000000">INTERVENTION</text>
+  
+  <!-- Tagline -->
+  <text x="512" y="850" text-anchor="middle" font-size="18" fill="#666666" font-style="italic">
+    We Answer. We Fix. You Relax.
+  </text>
+</svg>

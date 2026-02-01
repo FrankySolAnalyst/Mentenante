@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Phone, Mail, MapPin, Wrench } from "lucide-react"
+import Image from "next/image"
+import { Phone, Mail, MapPin } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 export function Footer() {
@@ -17,8 +18,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Wrench className="h-6 w-6 text-siren" />
+            <div className="flex items-center space-x-3">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/logo-transparent.png"
+                  alt="Tech Intervention Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <span className="vintage-heading text-lg">Tech Intervention</span>
             </div>
             <p className="text-sm text-gray-400">

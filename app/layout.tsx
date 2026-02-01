@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/logo-transparent.png',
+    apple: '/logo-transparent.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'ro_RO',
@@ -40,10 +44,10 @@ export const metadata: Metadata = {
     description: 'Laptop dead? Don\'t panic. We resurrect tech. Expert repair services with same-day emergency options.',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Tech Intervention - Emergency Laptop Repair',
+        url: '/logo.jpg',
+        width: 1024,
+        height: 1024,
+        alt: 'Tech Intervention - Tech Trinity Logo',
       },
     ],
   },
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tech Intervention | Emergency Laptop Repair',
     description: 'Expert laptop repair with same-day emergency service',
-    images: ['/og-image.jpg'],
+    images: ['/logo.jpg'],
   },
   robots: {
     index: true,

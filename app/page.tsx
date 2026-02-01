@@ -9,6 +9,10 @@ import { TestimonialsMarquee } from "@/components/testimonials-marquee"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
 import { LanguageProvider } from "@/contexts/language-context"
+import { WhatsAppButton } from "@/components/whatsapp-button"
+import { ClickToCall } from "@/components/click-to-call"
+import { LiveActivityTicker } from "@/components/live-activity-ticker"
+import TrustSignals from "@/components/trust-signals"
 
 export default function Home() {
   return (
@@ -16,6 +20,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <TrustSignals />
         <ServicesGrid />
         <RepairTracker />
         <TrustBadges />
@@ -23,6 +28,12 @@ export default function Home() {
         <ContactForm />
       </main>
       <Footer />
+      
+      {/* Floating engagement widgets */}
+      <WhatsAppButton />
+      <ClickToCall />
+      <LiveActivityTicker />
+      
       <JsonLdSchema />
     </LanguageProvider>
   )
@@ -34,7 +45,8 @@ function JsonLdSchema() {
     "@type": "LocalBusiness",
     "@id": "https://techintervention.ro",
     "name": "Tech Intervention",
-    "image": "https://techintervention.ro/og-image.jpg",
+    "image": "https://techintervention.ro/logo.jpg",
+    "logo": "https://techintervention.ro/logo.jpg",
     "url": "https://techintervention.ro",
     "telephone": "+40123456789",
     "email": "contact@techintervention.ro",
