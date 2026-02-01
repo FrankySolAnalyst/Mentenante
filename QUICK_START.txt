@@ -1,0 +1,65 @@
+╔══════════════════════════════════════════════════════════════╗
+║                   TECH INTERVENTION                          ║
+║              Quick Start Guide (5 Minutes)                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+✅ STEP 1: Install Dependencies (1 min)
+----------------------------------------
+npm install
+
+
+✅ STEP 2: Set Up Supabase (2 min)
+-----------------------------------
+1. Go to https://supabase.com
+2. Click "New Project"
+3. Copy contents of supabase/schema.sql
+4. Paste in SQL Editor and run
+5. Get your credentials:
+   - Project URL
+   - Anon Key
+
+
+✅ STEP 3: Configure Environment (30 sec)
+------------------------------------------
+Edit .env.local:
+
+NEXT_PUBLIC_SUPABASE_URL=<paste-your-url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<paste-your-key>
+
+
+✅ STEP 4: Run Development Server (30 sec)
+-------------------------------------------
+npm run dev
+
+Open http://localhost:3000
+
+
+✅ STEP 5: Test Features (1 min)
+---------------------------------
+1. View hero section with Tech Trinity
+2. Browse 6 service cards
+3. Try repair tracker (use ticket: TI-260131-001)
+4. Check testimonials marquee
+5. Test contact form
+
+
+🚀 DEPLOY TO PRODUCTION:
+------------------------
+See DEPLOYMENT_GUIDE.md for full instructions
+
+Quick deploy:
+1. Push to GitHub
+2. Import to Vercel
+3. Add environment variables
+4. Deploy!
+
+
+📞 SUPPORT:
+-----------
+- Full docs: README.md
+- Deployment: DEPLOYMENT_GUIDE.md
+- Overview: PROJECT_SUMMARY.md
+
+
+🎉 YOU'RE READY TO GO!
+
