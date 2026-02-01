@@ -34,7 +34,7 @@ export function ContactForm() {
       'diagnostic'
     ]),
     message: z.string().optional(),
-    is_emergency: z.boolean().default(false)
+    is_emergency: z.boolean()
   })
 
   type LeadFormData = z.infer<typeof leadSchema>
@@ -45,7 +45,10 @@ export function ContactForm() {
     formState: { errors },
     reset
   } = useForm<LeadFormData>({
-    resolver: zodResolver(leadSchema)
+    resolver: zodResolver(leadSchema),
+    defaultValues: {
+      is_emergency: false
+    }
   })
 
   const onSubmit = async (data: LeadFormData) => {
