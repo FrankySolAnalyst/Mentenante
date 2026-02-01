@@ -1,9 +1,18 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Libre_Baskerville, Roboto_Mono } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const libreBaskerville = Libre_Baskerville({ 
+  subsets: ["latin"], 
+  weight: ["400", "700"],
+  variable: "--font-serif" 
+})
+const robotoMono = Roboto_Mono({ 
+  subsets: ["latin"], 
+  variable: "--font-mono" 
+})
 
 export const metadata: Metadata = {
   title: "Tech Intervention | Emergency Laptop Repair Bucharest",
@@ -82,7 +91,9 @@ export default function RootLayout({
     <html lang="ro" className="scroll-smooth">
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased grain-overlay",
-        inter.variable
+        inter.variable,
+        libreBaskerville.variable,
+        robotoMono.variable
       )}>
         {children}
       </body>

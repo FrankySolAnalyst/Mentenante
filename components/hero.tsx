@@ -9,129 +9,92 @@ import { UrgencyIndicator } from "@/components/urgency-indicator"
 export function Hero() {
   const { t } = useLanguage()
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-100">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grain opacity-30" />
-      
-      <div className="container relative z-10 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Copy */}
-          <div className="space-y-8 text-center lg:text-left">
-            {/* Badge + Urgency Indicator */}
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
-                <Zap className="h-4 w-4 text-siren" />
-                <span>{t.hero.badge}</span>
-              </div>
-              <UrgencyIndicator />
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="vintage-heading text-5xl md:text-7xl leading-tight">
-              {t.hero.headline1}<br />
-              <span className="text-siren">{t.hero.headline2}</span><br />
-              {t.hero.headline3}
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden paper-grain py-20 md:py-32">
+      {/* Newspaper-style Headline Section */}
+      <div className="container relative z-10 mx-auto max-w-5xl">
+        <div className="text-center space-y-12">
+          
+          {/* Main Headline - Massive Centered Serif */}
+          <div className="space-y-6">
+            <h1 className="vintage-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] text-balance tracking-tight">
+              DEAD LAPTOP?<br />
+              <span className="text-siren">WE RESURRECT</span><br />
+              TECH.
             </h1>
-
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-gray-700 vintage-subheading leading-relaxed">
+            
+            {/* Subheadline - Italic Serif */}
+            <p className="vintage-subheading text-2xl md:text-3xl text-gray-700 max-w-3xl mx-auto text-balance leading-relaxed">
               {t.hero.subheadline}
             </p>
+          </div>
 
-            {/* Trust Line */}
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 justify-center lg:justify-start">
-              <div className="flex items-center gap-2">
-                <span className="text-siren text-xl">✓</span>
-                <span>{t.hero.trust1}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-siren text-xl">✓</span>
-                <span>{t.hero.trust2}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-siren text-xl">✓</span>
-                <span>{t.hero.trust3}</span>
-              </div>
+          {/* Divider Line */}
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-24 bg-black"></div>
+            <UrgencyIndicator />
+            <div className="h-px w-24 bg-black"></div>
+          </div>
+
+          {/* Trust Badges - Horizontal */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm md:text-base font-semibold technical-mono">
+            <div className="flex items-center gap-2">
+              <span className="text-siren text-2xl">✓</span>
+              <span className="uppercase tracking-wide">{t.hero.trust1}</span>
             </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
-                variant="emergency" 
-                size="xl"
-                className="siren-pulse group"
-              >
-                <Zap className="mr-2 h-5 w-5" />
-                {t.hero.emergencyCTA}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="xl"
-                className="border-2 border-black hover:bg-black hover:text-white transition-all group"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                {t.hero.standardCTA}
-              </Button>
+            <div className="flex items-center gap-2">
+              <span className="text-siren text-2xl">✓</span>
+              <span className="uppercase tracking-wide">{t.hero.trust2}</span>
             </div>
-
-            {/* Contact Info */}
-            <div className="flex items-center justify-center lg:justify-start space-x-4 text-sm">
-              <span className="text-gray-600">{t.hero.callUs}</span>
-              <a 
-                href="tel:+40123456789" 
-                className="font-bold text-xl text-black hover:text-siren transition-colors"
-              >
-                0123 456 789
-              </a>
+            <div className="flex items-center gap-2">
+              <span className="text-siren text-2xl">✓</span>
+              <span className="uppercase tracking-wide">{t.hero.trust3}</span>
             </div>
           </div>
 
-          {/* Right Column - Hero Image */}
-          <div className="relative">
-            {/* Main Image Container - Clean presentation */}
-            <div className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-black bg-white p-6">
-              {/* Tech Trinity Logo */}
-              <div className="relative w-full h-full flex items-center justify-center">
-                <Image
-                  src="/logo-transparent.png"
-                  alt="Tech Intervention - Tech Trinity Logo"
-                  width={400}
-                  height={400}
-                  className="object-contain w-full h-full"
-                  priority
-                  quality={100}
-                />
-              </div>
-            </div>
+          {/* CTA Buttons - Sharp-Edged Monochrome */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+            {/* Emergency Button - White bg, Red text */}
+            <button className="w-full sm:w-auto px-8 py-4 bg-white text-siren border-2 border-siren hover:bg-siren hover:text-white transition-all font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 group btn-brutalist">
+              <Zap className="h-5 w-5" />
+              {t.hero.emergencyCTA}
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </button>
             
-            {/* Caption below image */}
-            <div className="mt-6 text-center">
-              <p className="text-base font-bold text-gray-900 vintage-heading px-4">
-                {t.hero.techTrinity}
-              </p>
-            </div>
+            {/* Standard Button - Black bg, White text */}
+            <button className="w-full sm:w-auto px-8 py-4 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-all font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 group btn-brutalist">
+              <Phone className="h-5 w-5" />
+              {t.hero.standardCTA}
+            </button>
+          </div>
 
-            {/* Floating Stats */}
-            <div className="absolute -bottom-6 -left-6 bg-siren text-white px-6 py-4 rounded-lg shadow-xl engraving-border">
-              <p className="text-3xl font-bold">1000+</p>
-              <p className="text-xs uppercase tracking-wide">{t.hero.devicesSaved}</p>
-            </div>
+          {/* Contact Info - Terminal Style */}
+          <div className="inline-flex items-center justify-center space-x-3 px-6 py-3 bg-black text-white border-2 border-black technical-mono">
+            <span className="text-gray-400 text-sm uppercase tracking-wider">{t.hero.callUs}:</span>
+            <a 
+              href="tel:+40123456789" 
+              className="font-bold text-xl hover:text-siren transition-colors"
+            >
+              0123 456 789
+            </a>
+          </div>
 
-            <div className="absolute -top-6 -right-6 bg-black text-white px-6 py-4 rounded-lg shadow-xl engraving-border">
-              <p className="text-3xl font-bold">24/7</p>
-              <p className="text-xs uppercase tracking-wide">{t.hero.emergencyLine}</p>
+          {/* Stats Row - Newspaper Style */}
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8 border-t-2 border-black">
+            <div className="text-center">
+              <p className="text-4xl md:text-5xl font-bold vintage-heading">1000+</p>
+              <p className="text-xs md:text-sm uppercase tracking-wide technical-mono mt-2">{t.hero.devicesSaved}</p>
+            </div>
+            <div className="text-center border-x-2 border-black">
+              <p className="text-4xl md:text-5xl font-bold vintage-heading">24/7</p>
+              <p className="text-xs md:text-sm uppercase tracking-wide technical-mono mt-2">{t.hero.emergencyLine}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-4xl md:text-5xl font-bold vintage-heading">4.9★</p>
+              <p className="text-xs md:text-sm uppercase tracking-wide technical-mono mt-2">Google Reviews</p>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom Wave Divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path d="M0 0L60 10C120 20 240 40 360 46.7C480 53 600 47 720 43.3C840 40 960 40 1080 46.7C1200 53 1320 67 1380 73.3L1440 80V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z" fill="white"/>
-        </svg>
+        </div>
       </div>
     </section>
   )

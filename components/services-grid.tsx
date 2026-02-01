@@ -82,100 +82,107 @@ export function ServicesGrid() {
   }
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-white">
-      <div className="container">
-        {/* Header */}
+    <section id="services" className="py-16 md:py-24 paper-grain">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header - Centered */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="vintage-heading text-4xl md:text-5xl mb-4">
+          <h2 className="vintage-heading text-5xl md:text-6xl mb-4 text-balance">
             {t.services.title}
           </h2>
-          <p className="text-gray-600 vintage-subheading text-xl">
+          <div className="w-24 h-1 bg-black mx-auto my-6"></div>
+          <p className="text-gray-700 vintage-subheading text-xl">
             {t.services.subtitle}
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+        {/* Services List - Orderly Technical Layout */}
+        <div className="space-y-6 max-w-5xl mx-auto">
+          {services.map((service, index) => {
             const Icon = service.icon
             const content = getServiceContent(service.id)
             
             if (!content) return null
             
             return (
-              <Card 
+              <div 
                 key={service.id} 
-                className="engraving-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                className="border-2 border-black bg-white hover:bg-gray-50 transition-all group"
               >
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 bg-black text-white rounded-lg">
+                <div className="grid md:grid-cols-[auto_1fr_auto] gap-6 p-6 md:p-8 items-start">
+                  
+                  {/* Left: Icon + Number */}
+                  <div className="flex flex-col items-center gap-3 min-w-[80px]">
+                    <div className="w-16 h-16 bg-black text-white flex items-center justify-center border-2 border-black">
                       <Icon className="h-8 w-8" />
                     </div>
-                    {getUrgencyBadge(service.urgency)}
+                    <span className="technical-mono text-xs font-bold tracking-wider">
+                      [{String(index + 1).padStart(2, '0')}]
+                    </span>
                   </div>
-                  
-                  <CardTitle className="vintage-heading text-xl mb-2">
-                    {content.title}
-                  </CardTitle>
-                  <CardDescription className="vintage-subheading text-base">
-                    {content.subtitle}
-                  </CardDescription>
-                </CardHeader>
 
-                <CardContent className="flex-1 flex flex-col">
-                  <p className="text-sm text-gray-700 mb-4 leading-relaxed">
-                    {content.description}
-                  </p>
-
-                  {/* Features List */}
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {content.features.slice(0, 3).map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-sm">
-                        <span className="text-siren mr-2 mt-0.5">✓</span>
-                        <span className="text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                    {content.features.length > 3 && (
-                      <li className="text-xs text-gray-500 italic pl-5">
-                        +{content.features.length - 3} more...
-                      </li>
-                    )}
-                  </ul>
-
-                  {/* Price & Time */}
-                  <div className="flex items-center justify-between text-sm border-t pt-4 mb-4">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Clock className="h-4 w-4" />
-                      <span>{content.time}</span>
+                  {/* Middle: Content */}
+                  <div className="space-y-4">
+                    {/* Title + Badge */}
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="vintage-heading text-2xl md:text-3xl uppercase">
+                        {content.title}
+                      </h3>
+                      {getUrgencyBadge(service.urgency)}
                     </div>
-                    <div className="font-bold text-black">
-                      {content.price}
+
+                    {/* Subtitle */}
+                    <p className="technical-mono text-sm text-gray-600 uppercase tracking-wide">
+                      {content.subtitle}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-base text-gray-700 leading-relaxed max-w-2xl">
+                      {content.description}
+                    </p>
+
+                    {/* Features - Monospace List */}
+                    <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 pt-2">
+                      {content.features.slice(0, 4).map((feature, idx) => (
+                        <div key={idx} className="flex items-start text-sm">
+                          <span className="text-siren mr-2 font-bold technical-mono">→</span>
+                          <span className="text-gray-700 technical-mono">{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* CTA */}
-                  <Button 
-                    variant={service.urgency === 'high' ? 'siren' : 'outline'} 
-                    className="w-full group"
-                  >
-                    {t.services.getFixed}
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+                  {/* Right: Price Box */}
+                  <div className="border-2 border-black bg-white p-4 md:p-6 min-w-[180px] space-y-3">
+                    <div className="space-y-1">
+                      <p className="technical-mono text-xs uppercase tracking-wider text-gray-500">Duration</p>
+                      <p className="font-bold text-lg technical-mono">{content.time}</p>
+                    </div>
+                    <div className="border-t-2 border-black pt-3 space-y-1">
+                      <p className="technical-mono text-xs uppercase tracking-wider text-gray-500">Price</p>
+                      <p className="font-bold text-2xl vintage-heading">{content.price}</p>
+                    </div>
+                    <button className="w-full mt-4 px-4 py-3 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-all font-bold uppercase text-xs tracking-wider btn-brutalist group">
+                      {t.services.getFixed}
+                      <ArrowRight className="inline ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+
+                </div>
+              </div>
             )
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">
-            {t.services.customDiagnostic}
-          </p>
-          <Button variant="outline" size="lg">
-            {t.services.requestCustom}
-          </Button>
+        {/* Bottom CTA - Centered Terminal Style */}
+        <div className="mt-16 text-center max-w-2xl mx-auto">
+          <div className="border-2 border-black bg-white p-8 space-y-4">
+            <p className="text-gray-700 vintage-subheading text-lg">
+              {t.services.customDiagnostic}
+            </p>
+            <button className="px-8 py-4 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-all font-bold uppercase tracking-wider text-sm btn-brutalist">
+              {t.services.requestCustom}
+            </button>
+          </div>
         </div>
       </div>
     </section>

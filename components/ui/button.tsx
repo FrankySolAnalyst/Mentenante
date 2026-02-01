@@ -5,27 +5,27 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 btn-brutalist",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-black text-white border-2 border-black hover:bg-white hover:text-black",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-siren text-white border-2 border-siren hover:bg-white hover:text-siren",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border-2 border-black bg-white text-black hover:bg-black hover:text-white",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        siren: "bg-siren text-white hover:bg-siren-dark font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-black",
-        emergency: "bg-siren text-white hover:bg-siren-dark font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-black animate-pulse",
+          "bg-gray-200 text-black border-2 border-black hover:bg-black hover:text-white",
+        ghost: "border-2 border-transparent hover:border-black hover:bg-gray-50",
+        link: "border-0 text-black underline-offset-4 hover:underline btn-brutalist-none",
+        siren: "bg-siren text-white border-2 border-siren hover:bg-white hover:text-siren font-bold uppercase tracking-wider",
+        emergency: "bg-white text-siren border-2 border-siren hover:bg-siren hover:text-white font-bold uppercase tracking-wider siren-pulse",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        xl: "h-14 rounded-md px-10 text-lg",
+        sm: "h-9 px-3 text-xs",
+        lg: "h-12 px-8 text-base",
+        xl: "h-14 px-10 text-lg",
         icon: "h-10 w-10",
       },
     },

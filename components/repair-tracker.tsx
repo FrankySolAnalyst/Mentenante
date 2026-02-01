@@ -83,163 +83,172 @@ export function RepairTracker() {
   }
 
   return (
-    <section id="tracker" className="py-16 md:py-24 bg-gray-50">
-      <div className="container">
-        <div className="max-w-3xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="vintage-heading text-3xl md:text-4xl mb-4">
-              {t.tracker.title}
-            </h2>
-            <p className="text-gray-600 vintage-subheading text-lg">
-              {t.tracker.subtitle}
-            </p>
-          </div>
+    <section id="tracker" className="py-16 md:py-24 bg-white">
+      <div className="container mx-auto max-w-4xl">
+        {/* Header - Centered */}
+        <div className="text-center mb-12">
+          <h2 className="vintage-heading text-5xl md:text-6xl mb-4">
+            {t.tracker.title}
+          </h2>
+          <div className="w-24 h-1 bg-black mx-auto my-6"></div>
+          <p className="text-gray-700 vintage-subheading text-xl">
+            {t.tracker.subtitle}
+          </p>
+        </div>
 
-          {/* Search Form */}
-          <Card className="engraving-border">
-            <CardHeader>
-              <CardTitle>{t.tracker.cardTitle}</CardTitle>
-              <CardDescription>
-                {t.tracker.cardDescription}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+        {/* Receipt/Terminal Style Tracker */}
+        <div className="max-w-2xl mx-auto">
+          {/* Terminal-style Input Container */}
+          <div className="border-2 border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            {/* Terminal Header */}
+            <div className="border-b-2 border-black bg-black text-white px-6 py-3">
+              <p className="technical-mono text-sm uppercase tracking-wider">
+                → {t.tracker.cardTitle}
+              </p>
+            </div>
+
+            {/* Terminal Body */}
+            <div className="p-6 md:p-8 space-y-6">
+              {/* Search Form - Terminal Style */}
               <form onSubmit={handleSearch} className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="flex-1">
-                    <Label htmlFor="ticket-number" className="sr-only">
-                      {t.tracker.placeholder}
-                    </Label>
-                    <Input
-                      id="ticket-number"
-                      placeholder={t.tracker.placeholder}
-                      value={ticketNumber}
-                      onChange={(e) => setTicketNumber(e.target.value.toUpperCase())}
-                      className="text-center font-mono text-lg"
+                <div className="space-y-3">
+                  <label className="block technical-mono text-xs uppercase tracking-wider text-gray-600">
+                    {t.tracker.cardDescription}
+                  </label>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex-1 relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 technical-mono text-gray-400">
+                        #
+                      </span>
+                      <input
+                        id="ticket-number"
+                        type="text"
+                        placeholder={t.tracker.placeholder}
+                        value={ticketNumber}
+                        onChange={(e) => setTicketNumber(e.target.value.toUpperCase())}
+                        className="w-full pl-8 pr-4 py-3 border-2 border-black technical-mono text-lg uppercase focus:outline-none focus:ring-2 focus:ring-siren"
+                        disabled={loading}
+                      />
+                    </div>
+                    
+                    <button 
+                      type="submit" 
                       disabled={loading}
-                    />
+                      className="px-8 py-3 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-all font-bold uppercase text-sm tracking-wider btn-brutalist disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loading ? (
+                        <span className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          {t.tracker.searching}
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <Search className="h-4 w-4" />
+                          {t.tracker.buttonTrack}
+                        </span>
+                      )}
+                    </button>
                   </div>
-                  <Button 
-                    type="submit" 
-                    variant="siren" 
-                    disabled={loading}
-                    className="sm:w-auto"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        {t.tracker.searching}
-                      </>
-                    ) : (
-                      <>
-                        <Search className="mr-2 h-4 w-4" />
-                        {t.tracker.buttonTrack}
-                      </>
-                    )}
-                  </Button>
                 </div>
               </form>
 
-              {/* Error Message */}
+              {/* Error Message - Terminal Style */}
               {error && (
-                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md flex items-start space-x-2">
-                  <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm text-red-600">{error}</p>
+                <div className="border-2 border-siren bg-red-50 p-4">
+                  <div className="flex items-start space-x-3">
+                    <AlertCircle className="h-5 w-5 text-siren flex-shrink-0 mt-0.5" />
+                    <p className="technical-mono text-sm text-red-900">{error}</p>
+                  </div>
                 </div>
               )}
 
-              {/* Ticket Details */}
+              {/* Ticket Details - Receipt Style */}
               {ticket && (
-                <div className="mt-6 space-y-6">
-                  {/* Status Overview */}
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border-2 border-black">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        {getStatusIcon(ticket.status)}
-                        <div>
-                          <p className="text-sm text-gray-600">{t.tracker.currentStatus}</p>
-                          <p className="font-bold text-xl">{getStatusLabel(ticket.status)}</p>
-                        </div>
-                      </div>
-                      <Badge 
-                        className={`${getStatusColor(ticket.status)} text-white text-sm px-3 py-1`}
-                      >
+                <div className="border-t-2 border-dashed border-black pt-6 space-y-6">
+                  
+                  {/* Receipt Header */}
+                  <div className="text-center space-y-2 pb-4 border-b-2 border-dashed border-black">
+                    <p className="technical-mono text-xs uppercase tracking-wider text-gray-600">
+                      Repair Status
+                    </p>
+                    <p className="vintage-heading text-3xl uppercase">
+                      {getStatusLabel(ticket.status)}
+                    </p>
+                    <div className="flex items-center justify-center gap-2">
+                      {getStatusIcon(ticket.status)}
+                      <span className="technical-mono text-xs uppercase px-3 py-1 bg-black text-white border-2 border-black">
                         {ticket.is_emergency ? t.tracker.emergency : t.tracker.standard}
-                      </Badge>
+                      </span>
                     </div>
+                  </div>
 
-                    {/* Progress Bar */}
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                  {/* Progress Bar - Terminal Style */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between technical-mono text-xs">
+                      <span>Progress</span>
+                      <span>{getProgressPercentage(ticket.status)}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 h-4 border-2 border-black">
                       <div
-                        className="bg-siren h-full transition-all duration-500 ease-out rounded-full"
+                        className="bg-black h-full transition-all duration-500 ease-out"
                         style={{ width: `${getProgressPercentage(ticket.status)}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-2 text-right">
-                      {getProgressPercentage(ticket.status)}% {t.tracker.progress}
-                    </p>
                   </div>
 
-                  {/* Device & Service Info */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-sm uppercase tracking-wide text-gray-600">
-                        {t.tracker.deviceInfo}
-                      </h4>
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-xs text-gray-500">{t.tracker.device}</p>
-                          <p className="font-medium">{ticket.device_brand} {ticket.device_model}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-500">{t.tracker.serviceType}</p>
-                          <p className="font-medium capitalize">
-                            {ticket.service_type.replace(/_/g, ' ')}
-                          </p>
-                        </div>
-                      </div>
+                  {/* Receipt Details */}
+                  <div className="space-y-4 technical-mono text-sm">
+                    <div className="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                      <span className="text-gray-600 uppercase">{t.tracker.device}:</span>
+                      <span className="font-bold">{ticket.device_brand} {ticket.device_model}</span>
                     </div>
-
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-sm uppercase tracking-wide text-gray-600">
-                        {t.tracker.timeline}
-                      </h4>
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-xs text-gray-500">{t.tracker.received}</p>
-                          <p className="font-medium">
-                            {new Date(ticket.created_at).toLocaleDateString('ro-RO', {
-                              day: '2-digit',
-                              month: 'long',
-                              year: 'numeric'
-                            })}
-                          </p>
-                        </div>
-                        {ticket.estimated_completion && (
-                          <div>
-                            <p className="text-xs text-gray-500">{t.tracker.estimatedCompletion}</p>
-                            <p className="font-medium">
-                              {new Date(ticket.estimated_completion).toLocaleDateString('ro-RO', {
-                                day: '2-digit',
-                                month: 'long',
-                                year: 'numeric'
-                              })}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+                    
+                    <div className="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                      <span className="text-gray-600 uppercase">{t.tracker.serviceType}:</span>
+                      <span className="font-bold capitalize">{ticket.service_type.replace(/_/g, ' ')}</span>
                     </div>
+                    
+                    <div className="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                      <span className="text-gray-600 uppercase">{t.tracker.received}:</span>
+                      <span className="font-bold">
+                        {new Date(ticket.created_at).toLocaleDateString('ro-RO', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric'
+                        })}
+                      </span>
+                    </div>
+                    
+                    {ticket.estimated_completion && (
+                      <div className="flex justify-between border-b border-dashed border-gray-300 pb-2">
+                        <span className="text-gray-600 uppercase">{t.tracker.estimatedCompletion}:</span>
+                        <span className="font-bold">
+                          {new Date(ticket.estimated_completion).toLocaleDateString('ro-RO', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          })}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {ticket.estimated_cost && (
+                      <div className="flex justify-between pt-2 border-t-2 border-black">
+                        <span className="text-gray-900 uppercase font-bold">{t.tracker.estimatedCost}:</span>
+                        <span className="font-bold text-xl">{ticket.estimated_cost} RON</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Ready for Pickup Notice */}
                   {ticket.status === 'ready_for_pickup' && (
-                    <div className="bg-green-50 border-2 border-green-500 p-4 rounded-lg">
+                    <div className="border-2 border-black bg-green-50 p-4">
                       <div className="flex items-start space-x-3">
-                        <CheckCircle2 className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="font-bold text-green-900">{t.tracker.readyNotice}</p>
-                          <p className="text-sm text-green-700 mt-1">
+                          <p className="font-bold vintage-heading text-lg uppercase">{t.tracker.readyNotice}</p>
+                          <p className="technical-mono text-sm mt-2">
                             {t.tracker.readyDetails}
                           </p>
                         </div>
@@ -247,30 +256,26 @@ export function RepairTracker() {
                     </div>
                   )}
 
-                  {/* Cost Information */}
-                  {ticket.estimated_cost && (
-                    <div className="border-t pt-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600">{t.tracker.estimatedCost}</span>
-                        <span className="font-bold text-xl">{ticket.estimated_cost} RON</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-2">
-                        {t.tracker.finalCostNote}
-                      </p>
-                    </div>
-                  )}
+                  {/* Receipt Footer */}
+                  <div className="text-center pt-4 border-t-2 border-dashed border-black">
+                    <p className="technical-mono text-xs text-gray-500">
+                      {ticket.estimated_cost && t.tracker.finalCostNote}
+                    </p>
+                  </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          {/* Help Text */}
-          <p className="text-center text-sm text-gray-500 mt-6">
-            {t.tracker.cantFind} {t.tracker.contactUs}{" "}
-            <a href="tel:+40123456789" className="text-siren font-medium hover:underline">
-              0123 456 789
-            </a>
-          </p>
+          {/* Help Text - Terminal Style */}
+          <div className="text-center mt-8">
+            <p className="technical-mono text-sm text-gray-600">
+              {t.tracker.cantFind} {t.tracker.contactUs}{" "}
+              <a href="tel:+40123456789" className="text-black font-bold hover:text-siren transition-colors border-b-2 border-black hover:border-siren">
+                0123 456 789
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
